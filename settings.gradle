@@ -1,0 +1,5 @@
+rootProject.name = 'start'
+
+include 'application'
+include 'exception'
+
