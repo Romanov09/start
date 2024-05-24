@@ -1,11 +1,11 @@
-package exception.main.handler.resource;
+package application.main.start.controller.handler.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String message) {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
         super(message);
     }
 }

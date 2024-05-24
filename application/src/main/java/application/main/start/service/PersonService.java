@@ -1,7 +1,7 @@
 package application.main.start.service;
 
 import application.main.start.repository.PersonRepository;
-import application.main.start.users.Person;
+import application.main.start.model.Person;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package application.main.start.dto;
 
-import application.main.start.users.Person;
+import application.main.start.model.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;

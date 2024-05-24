@@ -1,9 +1,9 @@
-package application.main.start.controllers;
+package application.main.start.controller;
 
 import application.main.start.dto.ArticleDto;
 import application.main.start.service.ArticleService;
-import exception.main.handler.resource.ResourceBadRequestException;
-import exception.main.handler.resource.ResourceUnauthorizedException;
+import application.main.start.controller.handler.exception.BadRequestException;
+import application.main.start.controller.handler.exception.UnauthorizedException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,8 @@ public class ArticleController {
     public ResponseEntity<ArticleDto> createArticle(ArticleDto articleDto) {
         try {
             return ResponseEntity.ok(articleService.saveArticle(articleDto));
-        } catch (ResourceBadRequestException ex) {
-            throw new ResourceBadRequestException("Check you input message");
+        } catch (BadRequestException ex) {
+            throw new BadRequestException("Check you input message");
         }
     }
 
@@ -31,8 +31,8 @@ public class ArticleController {
     public ResponseEntity<String> editArticle(ArticleDto articleDto) {
         try {
             articleService.editArticle(articleDto);
-        } catch (ResourceUnauthorizedException ex) {
-            throw new ResourceUnauthorizedException("Access denied");
+        } catch (UnauthorizedException ex) {
+            throw new UnauthorizedException("Access denied");
         }
         return ResponseEntity.ok("");
     }
