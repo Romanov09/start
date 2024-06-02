@@ -2,8 +2,6 @@ package application.main.start.controller;
 
 import application.main.start.dto.ArticleDto;
 import application.main.start.service.ArticleService;
-import application.main.start.controller.handler.exception.BadRequestException;
-import application.main.start.controller.handler.exception.UnauthorizedException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,20 +18,11 @@ public class ArticleController {
     @PutMapping("/createArticle")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ArticleDto> createArticle(ArticleDto articleDto) {
-        try {
-            return ResponseEntity.ok(articleService.saveArticle(articleDto));
-        } catch (BadRequestException ex) {
-            throw new BadRequestException("Check you input message");
-        }
+        return ResponseEntity.ok(articleService.create(articleDto));
     }
 
     @PatchMapping("/editArticle")
-    public ResponseEntity<String> editArticle(ArticleDto articleDto) {
-        try {
-            articleService.editArticle(articleDto);
-        } catch (UnauthorizedException ex) {
-            throw new UnauthorizedException("Access denied");
-        }
-        return ResponseEntity.ok("");
+    public ResponseEntity<ArticleDto> editArticle(ArticleDto articleDto) {
+        return ResponseEntity.ok(articleService.update(articleDto));
     }
 }

@@ -30,13 +30,4 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private List<Article> articles;
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDay=" + birthDay +
-                '}';
-    }
 }

@@ -1,8 +1,9 @@
 package application.main.start.service;
 
-import application.main.start.repository.ArticleRepository;
 import application.main.start.dto.ArticleDto;
 import application.main.start.mapper.ArticleMapper;
+import application.main.start.model.Article;
+import application.main.start.repository.ArticleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,26 +14,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
-    private final ArticleMapper articleMapper = ArticleMapper.INSTANCE;
+    private final ArticleMapper articleMapper;
 
     @Transactional
-    public ArticleDto saveArticle(ArticleDto articleDto) {
-        return save(articleDto);
-    }
-
-    @Transactional
-    public void editArticle(ArticleDto articleDto) {
-        articleRepository.findById(articleDto.getId())
-                .map(article -> articleMapper.toUpdatedEntity(articleDto, article))
-                .orElseThrow(
-                () -> new RuntimeException("User not Found")
-        );
-    }
-
-
-    private ArticleDto save(ArticleDto articleDto) {
+    public ArticleDto create(ArticleDto articleDto) {
         articleDto.setDate(LocalDate.now());
         articleRepository.save(articleMapper.toEntity(articleDto));
         return articleDto;
     }
+
+    @Transactional
+    public ArticleDto update(ArticleDto articleDto) {
+        Article article = articleRepository.findById(articleDto.getId())
+                .map(a -> articleMapper.toUpdatedEntity(articleDto, a))
+                .orElseThrow(
+                        () -> new RuntimeException("Not found article")
+                );
+        return articleMapper.toDto(article);
+    }
+
 }

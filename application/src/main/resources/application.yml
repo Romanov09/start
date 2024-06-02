@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    password:
+    username:
+    url:
+
+server:
+  port: 8080
+

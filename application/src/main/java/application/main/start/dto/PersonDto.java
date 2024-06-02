@@ -1,30 +1,29 @@
 package application.main.start.dto;
 
-import application.main.start.model.Person;
+import application.main.start.model.Article;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class ArticleDto {
+public class PersonDto {
     @NonNull
-    private int id;
-    @NonNull
+    private Integer id;
     @Nullable
-    private String header;
-    @NonNull
+    private String firstName;
     @Nullable
-    private String text;
-    @NonNull
+    private String lastName;
     @Nullable
-    private LocalDate date;
-    private Person person;
+    private Date birthDay;
+    @Nullable
+    private List<Article> articles;
 }

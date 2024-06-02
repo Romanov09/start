@@ -4,13 +4,11 @@ import application.main.start.model.Article;
 import application.main.start.dto.ArticleDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ArticleMapper {
-    ArticleMapper INSTANCE = Mappers.getMapper(ArticleMapper.class);
 
-    ArticleDto articleDto(Article article);
+    ArticleDto toDto(Article article);
 
     Article toEntity(ArticleDto articleDto);
 
